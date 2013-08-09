@@ -1,7 +1,7 @@
 /* jshint browser: true */
 /**
  * GameGrid.js
- * v0.0.1
+ * v0.2.0
  *
  * Custom grid layout tool. Roughly similar to Desandro's Masonry, 
  * but built with an alternate purpose in mind and a desire to customize the feature-set on a per-project basis
@@ -64,6 +64,7 @@
           _resetColumnHeights,
           _moveElement,
           _layout,
+          _reflow,
           _init;
 
       /**
@@ -81,6 +82,7 @@
       _resetColumnHeights = function () {
         var i = 0,
             len = columns;
+        colHeights = [];
         for (i; i < len; i++) { colHeights.push(0); }
       };
 
@@ -88,18 +90,23 @@
        * Move individual element into place
        * @param  {Object} opts - 
        *         top : <Number> : top in 'px',
-       *         left: <Number> : left in '%',
+       *         left: <Number> : left in 'px' || '%',
        *         index: <Number> : element's index
        *         delay: <Boolean> : Do or don't delay
        */
       _moveElement = function (opts) {
         // Cache a reference to theel to run operations on
-        var _e = opts.el;
+        var _e = opts.el,
+            x = opts.left + 'px',
+            y = opts.top + 'px';
 
         function run() {
-          _e.style.top = opts.top + 'px';
-          _e.style.left = opts.left + '%';
-          _e.style[trans] = 'rotate(0deg)';
+          if (!Modernizr.csstransforms) {
+            _e.style.left = x;
+            _e.style.top = y;
+          } else {
+            _e.style[trans] = 'rotate(0deg) translate3d(' + x + ', ' + y + ', 0)';
+          }
         }
 
         if (opts.delay) {
@@ -133,8 +140,10 @@
           // The `top` value is just a running total
           top = (row > 0) ? colHeights[currentColumn] : 0;
 
-          // The `left` value is a %
-          left = ((100 / columns) * currentColumn);
+          // If the `left` value is a %
+          // left = ((100 / columns) * currentColumn);
+          // If the 'left value is px', use:
+          left = ((ww / columns) * currentColumn);
 
           // Add this current items' height to this columns' total
           colHeights[currentColumn] += el.offsetHeight;
@@ -150,11 +159,21 @@
         }
       };
 
+
+      _reflow = function (newColumns) {
+        if (newColumns !== columns) {
+          columns = newColumns;
+          _resetColumnHeights();
+          _layout();
+        }
+      };
+
       
       /**
        * Kick things off here!
        */
       _init = function () {
+
         // Populate columnHeights arrays with 0s
         _resetColumnHeights();
 
@@ -170,7 +189,8 @@
        * Expose API
        */
       return {
-        initialize: _init
+        initialize: _init,
+        reflow: _reflow
       };
 
     };
