@@ -7,7 +7,7 @@ Custom grid layout for dynamically sized elements.
 In other words...be cool man.
 
 ###Usage
-For now Game Grid has a hard dependency on `Modernizr.prefixed()` to normalize vendor prefixing of the 'transform' property. Ensure a build of [Modernizr](http://modernizr.com) including the _prefixed_ (see [this](http://modernizr.com/download/#-backgroundsize-opacity-cssanimations-csstransforms-csstransforms3d-csstransitions-shiv-cssclasses-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes) ) option is initiated prior to Game Grid.
+For now Game Grid has a hard dependency on `[Modernizr.prefixed()](http://modernizr.com/docs/#prefixed)` to normalize vendor prefixing of the 'transform' property. Ensure a build of [Modernizr](http://modernizr.com) including the _prefixed_ (see [this](http://modernizr.com/download/#-backgroundsize-opacity-cssanimations-csstransforms-csstransforms3d-csstransitions-shiv-cssclasses-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes) ) option is initiated prior to Game Grid.
 
 
 ### To-do:
