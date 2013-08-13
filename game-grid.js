@@ -196,7 +196,7 @@
 
           // The `top` value is just a running total
           if (offsetTop > 0) {
-            top = (colHeights[currentColumn] + offset.top);   
+            top = (colHeights[currentColumn] + offsetTop);   
           } else {
             top = (row > 0) ? colHeights[currentColumn] : 0;
           }
@@ -241,15 +241,16 @@
        */
       _refresh = function (opts) {
         
-        // Determine if new column structure is being requested
-        if (opts && opts.columns) {
-          if (opts.columns !== columns)
-            columns = opts.columns;
-        }
-
-        // Determine if an offset top is being added/changed
-        if (opts && opts.offsetTop) {
-          offsetTop = opts.offsetTop;
+        if (typeof opts !== 'undefined') {
+          // Determine if new column structure is being requested
+          if (typeof opts.columns !== 'undefined') {
+            if (opts.columns !== columns)
+              columns = opts.columns;
+          }
+          // Determine if an offset top is being added/changed
+          if (typeof opts.offsetTop !== 'undefined') {
+            offsetTop = opts.offsetTop;
+          }          
         }
 
         // Reset the height of each columns
