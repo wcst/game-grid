@@ -10,9 +10,9 @@ In other words...be cool man.
 
 ####Dependencies
 Game Grid carries two hard dependencies: 
-  1. [`Modernizr.prefixed`](http://modernizr.com/docs/#prefixed) – to normalize vendor prefixing of the 'transform' property. Ensure a build of [Modernizr](http://modernizr.com) including the _prefixed_ option (seen [here](http://modernizr.com/download/#-backgroundsize-opacity-cssanimations-csstransforms-csstransforms3d-csstransitions-shiv-cssclasses-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes)) is initiated prior to Game Grid.
+  - [`Modernizr.prefixed`](http://modernizr.com/docs/#prefixed) – to normalize vendor prefixing of the 'transform' property. Ensure a build of [Modernizr](http://modernizr.com) including the _prefixed_ option (seen [here](http://modernizr.com/download/#-backgroundsize-opacity-cssanimations-csstransforms-csstransforms3d-csstransitions-shiv-cssclasses-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes)) is initiated prior to Game Grid.
   
-  2. ['EndPool'](https://github.com/wcst/end-pool) – needed to listen for multiple `transitionEnd` events;
+  - [`EndPool.js`](https://github.com/wcst/end-pool) – needed to listen for multiple `transitionEnd` events;
 
 
 ### To-do:
